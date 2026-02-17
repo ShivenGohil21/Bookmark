@@ -27,12 +27,30 @@ export async function middleware(req: NextRequest) {
     }
   )
 
+  // Refresh session to ensure it's valid
+  await supabase.auth.getSession()
+
   const { data: { session } } = await supabase.auth.getSession()
 
+  // Route protection logic
+  const isLoginPage = req.nextUrl.pathname === '/login'
+  const isDashboard = req.nextUrl.pathname === '/'
+
   // If no session and trying to access dashboard, redirect to login
-  if (!session && req.nextUrl.pathname === '/') {
+  if (!session && isDashboard) {
     return NextResponse.redirect(new URL('/login', req.url))
   }
 
+  // If session exists and on login page, redirect to dashboard
+  if (session && isLoginPage) {
+    return NextResponse.redirect(new URL('/', req.url))
+  }
+
   return response
+}
+
+export const config = {
+  matcher: [
+    '/((?!_next/static|_next/image|favicon.ico).*)',
+  ],
 }
