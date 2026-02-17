@@ -34,3 +34,9 @@ You can check out [the Next.js GitHub repository](https://github.com/vercel/next
 The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
 
 Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+
+## Known behavior: bookmark deletion visibility
+
+- When you delete a bookmark in the app it may disappear from the database immediately, but the UI sometimes still shows the bookmark until you refresh the page. This is a known frontend behavior when the page state is not refreshed automatically after the delete operation.
+- Workaround: refresh the page (F5) after deleting to ensure the UI reflects the backend state.
+- Improvement: to avoid manual refreshes, the frontend can be updated to remove the deleted item from state after a successful API call or to use a realtime subscription. If you'd like, I can add this behavior so deletions update the UI instantly.

@@ -30,7 +30,7 @@ export default function Navbar() {
   }
 
   return (
-    <nav className="border-b border-white/10 bg-slate-900/50 backdrop-blur-lg sticky top-0 z-50">
+    <nav className="border-b bg-slate-900/50 backdrop-blur-lg sticky top-0 z-50">
       <div className="max-w-7xl mx-auto px-6 md:px-12 py-4 flex justify-between items-center">
         <Link href={user ? '/' : '/'} className="flex items-center gap-2 group">
           <div className="w-10 h-10 bg-gradient-to-br from-blue-500 to-cyan-500 rounded-lg flex items-center justify-center font-bold text-white group-hover:shadow-lg group-hover:shadow-blue-500/50 transition">
